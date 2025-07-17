@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -7,11 +8,14 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CategoriesPage from './pages/CategoriesPage';
 import AboutPage from './pages/AboutPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { useCart } from './hooks/useCart';
 
 function AppContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const { login, register } = useAuth();
   const {
     cartItems,
     addToCart,
@@ -65,6 +69,14 @@ function AppContent() {
           path="/about"
           element={<AboutPage />}
         />
+        <Route
+          path="/login"
+          element={<LoginPage onLogin={login} />}
+        />
+        <Route
+          path="/register"
+          element={<RegisterPage onRegister={register} />}
+        />
       </Routes>
     </Layout>
   );
@@ -72,9 +84,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 }
 
