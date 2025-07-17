@@ -1,12 +1,12 @@
 # FlipIt Ecommerce - Vercel Deployment Guide
 
-## 🚀 Manual Deployment Instructions
+## 🚀 Single Repository Deployment Instructions
 
 ### Prerequisites
 1. Create a Vercel account at [vercel.com](https://vercel.com)
 2. Connect your GitHub account to Vercel
 
-### Step 1: Deploy Backend
+### Step 1: Deploy Full-Stack Application
 
 1. **Go to Vercel Dashboard**
    - Visit [vercel.com/dashboard](https://vercel.com/dashboard)
@@ -14,18 +14,19 @@
 
 2. **Import Repository**
    - Select your GitHub repository: `TouatiInes/final-project-`
-   - Choose the `backend` folder for deployment
-   - Or create a new project and import just the backend folder
+   - Import the entire repository (both frontend and backend)
 
-3. **Configure Backend Deployment**
-   - **Framework Preset**: Other
-   - **Root Directory**: `backend`
-   - **Build Command**: Leave empty (uses package.json)
-   - **Output Directory**: Leave empty
+3. **Configure Deployment**
+   - **Framework Preset**: Vite
+   - **Root Directory**: `.` (root - leave empty)
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
    - **Install Command**: `npm install`
 
 4. **Environment Variables** (CRITICAL!)
    Add these environment variables in Vercel dashboard:
+
+   **Backend Variables:**
    ```
    MONGODB_URI=mongodb+srv://inestouati:6B0w512SaepYi7DL@cluster0.fbwzn0u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
    JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-vercel
@@ -33,75 +34,44 @@
    NODE_ENV=production
    ```
 
-5. **Deploy Backend**
+   **Frontend Variables:**
+   ```
+   VITE_API_URL=https://final-project-git-main-touatiines-projects.vercel.app/api
+   ```
+   (This will be your actual deployment URL + /api)
+
+5. **Deploy Application**
    - Click "Deploy"
    - Wait for deployment to complete
-   - Note the deployment URL (e.g., `https://your-backend-name.vercel.app`)
+   - Your app will be available at: `https://final-project-git-main-touatiines-projects.vercel.app`
+   - API endpoints will be at: `https://final-project-git-main-touatiines-projects.vercel.app/api`
 
-### Step 2: Deploy Frontend
-
-1. **Create New Project for Frontend**
-   - Go back to Vercel dashboard
-   - Click "New Project"
-   - Import the same repository
-   - This time select the root directory (frontend)
-
-2. **Configure Frontend Deployment**
-   - **Framework Preset**: Vite
-   - **Root Directory**: `.` (root)
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
-
-3. **Environment Variables for Frontend**
-   Add this environment variable:
-   ```
-   VITE_API_URL=https://your-backend-name.vercel.app/api
-   ```
-   (Replace `your-backend-name` with your actual backend deployment URL)
-
-4. **Deploy Frontend**
-   - Click "Deploy"
-   - Wait for deployment to complete
-
-### Step 3: Update Frontend API URL
-
-After backend deployment, you need to update the frontend environment variable:
-
-1. Go to your frontend project settings in Vercel
-2. Navigate to "Environment Variables"
-3. Update `VITE_API_URL` with your actual backend URL
-4. Redeploy the frontend
-
-### Step 4: Test Your Deployment
+### Step 2: Test Your Deployment
 
 1. **Test Backend API**
    ```bash
-   curl https://your-backend-name.vercel.app/api/health
+   curl https://final-project-git-main-touatiines-projects.vercel.app/api/health
    ```
 
 2. **Test Frontend**
-   - Visit your frontend URL
+   - Visit: `https://final-project-git-main-touatiines-projects.vercel.app`
    - Try registering a new user
    - Test product browsing
    - Test cart functionality
 
 ## 📋 Deployment Checklist
 
-### Backend Deployment ✅
+### Single Repository Deployment ✅
 - [ ] Repository imported to Vercel
-- [ ] Environment variables configured
+- [ ] Environment variables configured (both frontend and backend)
 - [ ] MongoDB connection working
-- [ ] API endpoints responding
-- [ ] CORS configured for frontend domain
-
-### Frontend Deployment ✅
-- [ ] Vite build configuration correct
-- [ ] API URL environment variable set
-- [ ] Frontend connecting to backend
+- [ ] API endpoints responding at `/api/*`
+- [ ] Frontend serving correctly
+- [ ] Frontend connecting to backend API
 - [ ] All pages loading correctly
 - [ ] Authentication working
 - [ ] Cart functionality working
+- [ ] CORS configured properly
 
 ## 🔧 Troubleshooting
 
@@ -113,9 +83,9 @@ After backend deployment, you need to update the frontend environment variable:
    - Check Vercel function logs
 
 2. **Frontend can't connect to backend**
-   - Verify VITE_API_URL is correct
+   - Verify VITE_API_URL is set to: `https://final-project-git-main-touatiines-projects.vercel.app/api`
    - Check CORS settings in backend
-   - Ensure backend is deployed and running
+   - Ensure API routes are working at `/api/*`
 
 3. **Database connection issues**
    - Verify MongoDB Atlas IP whitelist (set to 0.0.0.0/0 for Vercel)
@@ -125,8 +95,8 @@ After backend deployment, you need to update the frontend environment variable:
 ## 🌐 Expected URLs
 
 After successful deployment:
-- **Frontend**: `https://your-frontend-name.vercel.app`
-- **Backend API**: `https://your-backend-name.vercel.app/api`
+- **Full Application**: `https://final-project-git-main-touatiines-projects.vercel.app`
+- **Backend API**: `https://final-project-git-main-touatiines-projects.vercel.app/api`
 
 ## 📝 Post-Deployment Tasks
 

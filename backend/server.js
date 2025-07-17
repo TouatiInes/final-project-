@@ -227,8 +227,8 @@ app.use(limiter);
 
 // CORS
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
+  origin: process.env.NODE_ENV === 'production'
+    ? ['https://final-project-git-main-touatiines-projects.vercel.app']
     : ['http://localhost:3000', 'http://localhost:5173'],
   credentials: true
 }));
