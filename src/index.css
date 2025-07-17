@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: system-ui, sans-serif;
+    color: black;
+    background-color: white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: black;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: #374151;
+  }
+
+  .btn-secondary {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background-color: #f3f4f6;
+  }
+}
