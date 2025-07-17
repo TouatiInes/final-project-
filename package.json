@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vercel --prod",
+    "deploy:backend": "cd backend && vercel --prod"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
