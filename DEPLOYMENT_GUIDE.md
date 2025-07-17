@@ -1,32 +1,27 @@
 # FlipIt Ecommerce - Vercel Deployment Guide
 
-## 🚀 Single Repository Deployment Instructions
+## 🚀 Separate Deployments (Recommended)
 
 ### Prerequisites
 1. Create a Vercel account at [vercel.com](https://vercel.com)
 2. Connect your GitHub account to Vercel
 
-### Step 1: Deploy Full-Stack Application
+### Step 1: Deploy Backend
 
 1. **Go to Vercel Dashboard**
    - Visit [vercel.com/dashboard](https://vercel.com/dashboard)
    - Click "New Project"
 
-2. **Import Repository**
+2. **Import Repository for Backend**
    - Select your GitHub repository: `TouatiInes/final-project-`
-   - Import the entire repository (both frontend and backend)
-
-3. **Configure Deployment**
-   - **Framework Preset**: Vite
-   - **Root Directory**: `.` (root - leave empty)
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
+   - **Root Directory**: `backend`
+   - **Framework Preset**: Other
+   - **Build Command**: Leave empty
+   - **Output Directory**: Leave empty
    - **Install Command**: `npm install`
 
-4. **Environment Variables** (CRITICAL!)
+3. **Environment Variables for Backend**
    Add these environment variables in Vercel dashboard:
-
-   **Backend Variables:**
    ```
    MONGODB_URI=mongodb+srv://inestouati:6B0w512SaepYi7DL@cluster0.fbwzn0u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
    JWT_SECRET=8f2a9c4e6b1d3f7a9e2c5b8d1f4a7e0c3b6d9f2a5e8c1b4d7f0a3e6c9b2d5f8a1e4c7b0d3f6a9e2c5b8d1f4a7e0c3b6d9f2a5e8c1b4d7f0a3e6c9b2d5f8a
@@ -34,17 +29,34 @@
    NODE_ENV=production
    ```
 
-   **Frontend Variables:**
-   ```
-   VITE_API_URL=https://final-project-git-main-touatiines-projects.vercel.app/api
-   ```
-   (This will be your actual deployment URL + /api)
-
-5. **Deploy Application**
+4. **Deploy Backend**
    - Click "Deploy"
    - Wait for deployment to complete
-   - Your app will be available at: `https://final-project-git-main-touatiines-projects.vercel.app`
-   - API endpoints will be at: `https://final-project-git-main-touatiines-projects.vercel.app/api`
+   - Note the backend URL (e.g., `https://your-backend-name.vercel.app`)
+
+### Step 2: Deploy Frontend
+
+1. **Create New Project for Frontend**
+   - Go back to Vercel dashboard
+   - Click "New Project"
+   - Import the same repository: `TouatiInes/final-project-`
+
+2. **Configure Frontend Deployment**
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install`
+
+3. **Environment Variables for Frontend**
+   Add this environment variable (replace with your actual backend URL):
+   ```
+   VITE_API_URL=https://your-backend-name.vercel.app/api
+   ```
+
+4. **Deploy Frontend**
+   - Click "Deploy"
+   - Wait for deployment to complete
 
 ### Step 2: Test Your Deployment
 
