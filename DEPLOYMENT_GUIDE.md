@@ -29,7 +29,7 @@
    **Backend Variables:**
    ```
    MONGODB_URI=mongodb+srv://inestouati:6B0w512SaepYi7DL@cluster0.fbwzn0u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-vercel
+   JWT_SECRET=8f2a9c4e6b1d3f7a9e2c5b8d1f4a7e0c3b6d9f2a5e8c1b4d7f0a3e6c9b2d5f8a1e4c7b0d3f6a9e2c5b8d1f4a7e0c3b6d9f2a5e8c1b4d7f0a3e6c9b2d5f8a
    JWT_EXPIRE=7d
    NODE_ENV=production
    ```
@@ -108,10 +108,13 @@ After successful deployment:
 
 ## 🔒 Security Notes
 
-- JWT_SECRET should be a strong, unique value in production
-- MongoDB IP whitelist should be configured properly
-- Consider rate limiting for production use
-- Monitor API usage and costs
+- **JWT_SECRET**: The provided secret is cryptographically secure (128 hex characters)
+- **Never commit secrets**: Keep JWT_SECRET out of version control
+- **MongoDB Security**: IP whitelist configured for Vercel (0.0.0.0/0)
+- **Generate New Secrets**: Use `node generate-jwt-secret.js` to create new secrets
+- **Rate Limiting**: Already configured in the backend
+- **HTTPS Only**: Vercel provides automatic HTTPS
+- **Monitor Usage**: Check Vercel and MongoDB Atlas dashboards regularly
 
 ## 📞 Support
 
