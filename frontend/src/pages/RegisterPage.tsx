@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, UserPlus } from 'lucide-react';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 interface RegisterPageProps {
   onRegister: (name: string, email: string, password: string) => Promise<boolean>;
@@ -66,16 +67,19 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegister }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
+          <div className="mx-auto h-16 w-16 bg-black rounded-full flex items-center justify-center mb-6">
+            <UserPlus className="h-8 w-8 text-white" />
+          </div>
           <h2 className="text-3xl font-bold text-black">Create Account</h2>
           <p className="mt-2 text-gray-600">Join FlipIt and start shopping</p>
         </div>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-xl rounded-xl sm:px-10">
+        <div className="bg-white py-8 px-4 shadow-2xl rounded-xl sm:px-10 border border-gray-100 hover:shadow-3xl transition-shadow duration-300">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
@@ -228,8 +232,8 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegister }) => {
               >
                 {isLoading ? (
                   <div className="flex items-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Creating account...
+                    <LoadingSpinner size="sm" color="white" />
+                    <span className="ml-2">Creating account...</span>
                   </div>
                 ) : (
                   <div className="flex items-center">

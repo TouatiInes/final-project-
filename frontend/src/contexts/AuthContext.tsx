@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import Toast from '../components/ui/Toast';
 
 interface User {
   id: string;
@@ -14,6 +15,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   register: (name: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
+  showToast: (message: string, type: 'success' | 'error' | 'info') => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,6 +35,15 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: 'success' | 'error' | 'info';
+    isVisible: boolean;
+  }>({
+    message: '',
+    type: 'info',
+    isVisible: false
+  });
 
   // Check for existing token on mount
   useEffect(() => {
@@ -69,6 +80,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem('token', mockToken);
         localStorage.setItem('user', JSON.stringify(mockUser));
         setUser(mockUser);
+        showToast(`Welcome back, ${mockUser.name}!`, 'success');
         return true;
       } else if (email === 'admin@flipit.com' && password === 'admin123') {
         const mockAdmin: User = {
@@ -83,6 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem('token', mockToken);
         localStorage.setItem('user', JSON.stringify(mockAdmin));
         setUser(mockAdmin);
+        showToast(`Welcome back, ${mockAdmin.name}!`, 'success');
         return true;
       }
       
@@ -111,6 +124,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('token', mockToken);
       localStorage.setItem('user', JSON.stringify(mockUser));
       setUser(mockUser);
+      showToast(`Welcome to FlipIt, ${mockUser.name}!`, 'success');
       return true;
     } catch (error) {
       console.error('Registration error:', error);
@@ -122,6 +136,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
+    showToast('Successfully logged out', 'success');
+  };
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({
+      message,
+      type,
+      isVisible: true
+    });
+  };
+
+  const hideToast = () => {
+    setToast(prev => ({ ...prev, isVisible: false }));
   };
 
   const value: AuthContextType = {
@@ -130,12 +157,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isLoading,
     login,
     register,
-    logout
+    logout,
+    showToast
   };
 
   return (
     <AuthContext.Provider value={value}>
       {children}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+      />
     </AuthContext.Provider>
   );
 };
