@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
+import CategoriesPage from './pages/CategoriesPage';
+import AboutPage from './pages/AboutPage';
 import { useCart } from './hooks/useCart';
 
 function AppContent() {
@@ -54,6 +56,14 @@ function AppContent() {
               onRemoveItem={removeFromCart}
             />
           }
+        />
+        <Route
+          path="/categories"
+          element={<CategoriesPage />}
+        />
+        <Route
+          path="/about"
+          element={<AboutPage />}
         />
       </Routes>
     </Layout>

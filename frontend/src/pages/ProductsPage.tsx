@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Filter } from 'lucide-react';
 import ProductCard from '../components/product/ProductCard';
 import { products, categories, type Product } from '../data/products';
@@ -9,9 +10,18 @@ interface ProductsPageProps {
 }
 
 const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart, searchQuery = '' }) => {
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('name');
   const [showFilters, setShowFilters] = useState(false);
+
+  // Set category from URL parameters
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category');
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products;
