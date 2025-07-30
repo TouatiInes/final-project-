@@ -14,7 +14,7 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-black text-white">
+      <section className="relative bg-black text-white py-20">
         <div className="absolute inset-0 opacity-50">
           <img
             src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=600&fit=crop"
@@ -22,8 +22,8 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="max-w-3xl">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Discover Amazing Products at Unbeatable Prices
             </h1>
@@ -32,7 +32,7 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
             </p>
             <Link
               to="/products"
-              className="inline-flex items-center bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
             >
               Shop Now
               <ArrowRight className="ml-2 h-5 w-5" />
