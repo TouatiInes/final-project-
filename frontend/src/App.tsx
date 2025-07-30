@@ -10,6 +10,10 @@ import CategoriesPage from './pages/CategoriesPage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
+import CookiePage from './pages/CookiePage';
+import SitemapPage from './pages/SitemapPage';
 import { useCart } from './hooks/useCart';
 
 function AppContent() {
@@ -76,6 +80,22 @@ function AppContent() {
         <Route
           path="/register"
           element={<RegisterPage onRegister={register} />}
+        />
+        <Route
+          path="/privacy"
+          element={<PrivacyPage />}
+        />
+        <Route
+          path="/terms"
+          element={<TermsPage />}
+        />
+        <Route
+          path="/cookies"
+          element={<CookiePage />}
+        />
+        <Route
+          path="/sitemap"
+          element={<SitemapPage />}
         />
       </Routes>
     </Layout>
