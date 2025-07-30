@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AdminProvider } from './contexts/AdminContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -14,6 +15,10 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import CookiePage from './pages/CookiePage';
 import SitemapPage from './pages/SitemapPage';
+import AdminDashboard from './pages/AdminDashboard';
+import AddProductPage from './pages/AddProductPage';
+import EditProductPage from './pages/EditProductPage';
+import CreateAdminPage from './pages/CreateAdminPage';
 import { useCart } from './hooks/useCart';
 
 function AppContent() {
@@ -97,6 +102,22 @@ function AppContent() {
           path="/sitemap"
           element={<SitemapPage />}
         />
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
+        <Route
+          path="/admin/products/new"
+          element={<AddProductPage />}
+        />
+        <Route
+          path="/admin/products/edit/:id"
+          element={<EditProductPage />}
+        />
+        <Route
+          path="/create-admin"
+          element={<CreateAdminPage />}
+        />
       </Routes>
     </Layout>
   );
@@ -105,9 +126,11 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <AdminProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </AdminProvider>
     </AuthProvider>
   );
 }

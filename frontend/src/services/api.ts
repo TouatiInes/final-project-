@@ -109,6 +109,26 @@ class ApiService {
     });
   }
 
+  async updateProduct(id: string, productData: any) {
+    return this.request(`/products/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(productData),
+    });
+  }
+
+  async deleteProduct(id: string) {
+    return this.request(`/products/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async createAdmin(adminData: { name: string; email: string; password: string }) {
+    return this.request('/auth/create-admin', {
+      method: 'POST',
+      body: JSON.stringify(adminData),
+    });
+  }
+
   // Cart methods
   async getCart() {
     return this.request('/cart');

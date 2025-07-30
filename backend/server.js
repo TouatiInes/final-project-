@@ -225,27 +225,12 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// CORS
+// CORS - Allow all origins in development
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-
-        // Allow Vercel domains
-        if (origin.includes('vercel.app') || origin.includes('localhost')) {
-          return callback(null, true);
-        }
-
-        // Allow custom domain if set
-        if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) {
-          return callback(null, true);
-        }
-
-        callback(new Error('Not allowed by CORS'));
-      }
-    : ['http://localhost:3000', 'http://localhost:5173'],
-  credentials: true
+  origin: true, // Allow all origins in development
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Body parser middleware
@@ -297,7 +282,7 @@ app.post('/api/auth/register', async (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    
+
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(401).json({
@@ -305,7 +290,7 @@ app.post('/api/auth/login', async (req, res) => {
         message: 'Invalid email or password'
       });
     }
-    
+
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       return res.status(401).json({
@@ -313,13 +298,13 @@ app.post('/api/auth/login', async (req, res) => {
         message: 'Invalid email or password'
       });
     }
-    
+
     const token = generateToken({
       userId: user._id.toString(),
       email: user.email,
       role: user.role
     });
-    
+
     res.status(200).json({
       success: true,
       message: 'Login successful',
@@ -337,6 +322,63 @@ app.post('/api/auth/login', async (req, res) => {
     res.status(400).json({
       success: false,
       message: error.message || 'Login failed'
+    });
+  }
+});
+
+// Create admin user endpoint (for development/setup)
+app.post('/api/auth/create-admin', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Check if admin already exists
+    const existingAdmin = await User.findOne({ role: 'admin' });
+    if (existingAdmin) {
+      return res.status(400).json({
+        success: false,
+        message: 'Admin user already exists'
+      });
+    }
+
+    // Check if user with this email exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'User with this email already exists'
+      });
+    }
+
+    const adminUser = await User.create({
+      name,
+      email,
+      password,
+      role: 'admin'
+    });
+
+    const token = generateToken({
+      id: adminUser._id,
+      email: adminUser.email,
+      role: adminUser.role
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'Admin user created successfully',
+      data: {
+        user: {
+          id: adminUser._id,
+          name: adminUser.name,
+          email: adminUser.email,
+          role: adminUser.role
+        },
+        token
+      }
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message || 'Failed to create admin user'
     });
   }
 });
@@ -440,6 +482,59 @@ app.post('/api/products', authenticate, authorize('admin'), async (req, res) => 
     res.status(400).json({
       success: false,
       message: error.message || 'Failed to create product'
+    });
+  }
+});
+
+// Update product
+app.put('/api/products/:id', authenticate, authorize('admin'), async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully',
+      data: { product }
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message || 'Failed to update product'
+    });
+  }
+});
+
+// Delete product
+app.delete('/api/products/:id', authenticate, authorize('admin'), async (req, res) => {
+  try {
+    const product = await Product.findByIdAndDelete(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Product deleted successfully'
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message || 'Failed to delete product'
     });
   }
 });

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Search, ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, User, LogOut, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { useAdmin } from '../../contexts/AdminContext';
 
 interface HeaderProps {
   onSearch: (query: string) => void;
@@ -13,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
+  const { isAdmin } = useAdmin();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +53,12 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
             <Link to="/about" className="text-black hover:text-gray-600 transition-colors">
               About
             </Link>
+            {isAdmin && (
+              <Link to="/admin" className="text-blue-600 hover:text-blue-800 transition-colors font-medium">
+                <Settings className="h-4 w-4 inline mr-1" />
+                Admin
+              </Link>
+            )}
           </nav>
 
           {/* Search Bar */}
