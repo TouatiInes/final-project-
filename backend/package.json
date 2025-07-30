@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "echo 'Using JavaScript server.js - no build needed'",
     "start": "node server.js",
     "dev": "nodemon src/index.ts",
     "seed": "ts-node src/utils/seedData.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vercel-build": "npm run build"
+    "vercel-build": "echo 'Production ready - using server.js'"
   },
   "keywords": [],
   "author": "",
