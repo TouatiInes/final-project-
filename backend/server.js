@@ -228,7 +228,22 @@ app.use(limiter);
 // CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://final-project-git-main-touatiines-projects.vercel.app']
+    ? function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        // Allow Vercel domains
+        if (origin.includes('vercel.app') || origin.includes('localhost')) {
+          return callback(null, true);
+        }
+
+        // Allow custom domain if set
+        if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) {
+          return callback(null, true);
+        }
+
+        callback(new Error('Not allowed by CORS'));
+      }
     : ['http://localhost:3000', 'http://localhost:5173'],
   credentials: true
 }));

@@ -1,5 +1,19 @@
 {
+  "name": "flipit-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
   "dependencies": {
     "react-icons": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
