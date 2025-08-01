@@ -67,14 +67,14 @@ const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
+      <section className="bg-gradient-to-br from-pink-600 via-rose-500 to-pink-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
               About FlipIt
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              We're revolutionizing online shopping by making it simple, secure, and enjoyable. 
+            <p className="text-xl md:text-2xl text-pink-50 max-w-4xl mx-auto leading-relaxed">
+              We're revolutionizing online shopping by making it simple, secure, and enjoyable.
               Our mission is to connect people with the products they love.
             </p>
           </div>
@@ -86,7 +86,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-6">
                 Our Story
               </h2>
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
@@ -125,27 +125,35 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Features */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
               Why Choose FlipIt?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're committed to providing the best shopping experience with features designed around your needs.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="bg-black text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="h-8 w-8" />
+            {features.map((feature, index) => {
+              const gradients = [
+                'from-blue-500 to-cyan-500',
+                'from-pink-500 to-rose-500',
+                'from-green-500 to-emerald-500',
+                'from-purple-500 to-indigo-500'
+              ];
+              return (
+                <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                  <div className={`bg-gradient-to-r ${gradients[index % gradients.length]} text-white w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-lg`}>
+                    <feature.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -180,24 +188,24 @@ const AboutPage: React.FC = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
               Meet Our Team
             </h2>
             <p className="text-xl text-gray-600">
               The passionate people behind FlipIt
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
+                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-blue-200"
                 />
-                <h3 className="text-xl font-bold text-black mb-2">{member.name}</h3>
-                <p className="text-black font-medium mb-3">{member.role}</p>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{member.name}</h3>
+                <p className="text-blue-600 font-medium mb-3">{member.role}</p>
                 <p className="text-gray-600">{member.description}</p>
               </div>
             ))}
@@ -206,9 +214,9 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
             Ready to Start Shopping?
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -217,14 +225,14 @@ const AboutPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/products"
-              className="bg-black text-white px-8 py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               <ShoppingCart className="h-5 w-5" />
               <span>Start Shopping</span>
             </Link>
             <Link
               to="/categories"
-              className="border border-black text-black px-8 py-4 rounded-lg font-medium hover:bg-black hover:text-white transition-colors"
+              className="border-2 border-blue-500 text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300"
             >
               Browse Categories
             </Link>

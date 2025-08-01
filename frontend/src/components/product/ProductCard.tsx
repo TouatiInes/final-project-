@@ -76,9 +76,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
           <button
             onClick={() => onAddToCart(product)}
             disabled={!product.inStock}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium shadow-md ${
               product.inStock
-                ? 'bg-black text-white hover:bg-gray-800'
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 hover:shadow-lg'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >

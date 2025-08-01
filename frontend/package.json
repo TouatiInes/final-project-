@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "vercel-build": "npm run build",
     "deploy": "vercel --prod",
     "deploy:backend": "cd backend && vercel --prod"
   },

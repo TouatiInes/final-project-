@@ -62,7 +62,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart, searchQuery = 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-black mb-4">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
           {searchQuery ? `Search Results for "${searchQuery}"` : 'All Products'}
         </h1>
         <p className="text-gray-600">
@@ -76,7 +76,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart, searchQuery = 
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="lg:hidden flex items-center space-x-2 mb-4 px-4 py-2 border border-gray-300 rounded-lg"
+            className="lg:hidden flex items-center space-x-2 mb-4 px-4 py-2 border border-blue-300 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
           >
             <Filter className="h-5 w-5" />
             <span>Filters</span>
@@ -85,7 +85,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart, searchQuery = 
           <div className={`space-y-6 ${showFilters ? 'block' : 'hidden lg:block'}`}>
             {/* Category Filter */}
             <div>
-              <h3 className="text-lg font-semibold text-black mb-3">Category</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Category</h3>
               <div className="space-y-2">
                 <label className="flex items-center">
                   <input
@@ -116,11 +116,11 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart, searchQuery = 
 
             {/* Sort Options */}
             <div>
-              <h3 className="text-lg font-semibold text-black mb-3">Sort By</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Sort By</h3>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="name">Name (A-Z)</option>
                 <option value="price-low">Price (Low to High)</option>

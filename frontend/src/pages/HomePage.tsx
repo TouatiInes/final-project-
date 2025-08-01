@@ -14,25 +14,25 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-black text-white py-20">
+      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-20">
         <div className="absolute inset-0 opacity-50">
           <img
-            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&h=600&fit=crop"
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop"
             alt="Hero Background"
             className="w-full h-full object-cover"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
               Discover Amazing Products at Unbeatable Prices
             </h1>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 text-blue-50">
               Shop the latest trends and find everything you need in one place.
             </p>
             <Link
               to="/products"
-              className="inline-flex items-center bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Shop Now
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -44,13 +44,13 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-black">Featured Products</h2>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Featured Products</h2>
           <Link
             to="/products"
-            className="text-black font-medium flex items-center hover:text-gray-600 transition-colors"
+            className="text-pink-600 font-medium flex items-center hover:text-pink-700 transition-colors group"
           >
             View All
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -85,7 +85,7 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
           {/* Category Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {categories.map((category) => {
-              // Define icons and gradients for each category
+              // Define icons and gradients for each category - balanced color scheme
               const categoryConfig = {
                 'Electronics': {
                   icon: Smartphone,
@@ -107,9 +107,9 @@ const HomePage: React.FC<HomePageProps> = ({ onAddToCart }) => {
                 },
                 'Sports': {
                   icon: Dumbbell,
-                  gradient: 'from-orange-500 to-red-500',
-                  bgGradient: 'from-orange-50 to-red-50',
-                  borderGradient: 'from-orange-200 to-red-200'
+                  gradient: 'from-purple-500 to-indigo-500',
+                  bgGradient: 'from-purple-50 to-indigo-50',
+                  borderGradient: 'from-purple-200 to-indigo-200'
                 }
               };
 

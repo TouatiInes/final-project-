@@ -1,11 +1,11 @@
-# FlipIt - Memory Card Game
+# FlipIt - E-commerce Platform
 
-A full-stack memory card game built with React, TypeScript, Node.js, and MongoDB.
+A modern, full-stack e-commerce platform built with React, TypeScript, Node.js, and MongoDB featuring a beautiful blue-purple coordinated design theme.
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Deployed on Vercel]
-- **Backend API**: [Deployed on Vercel]
+- **Frontend**: [Will be deployed on Vercel]
+- **Backend API**: [Will be deployed on Vercel]
 
 ## 📁 Project Structure
 
@@ -17,15 +17,31 @@ flipit/
 └── package.json       # Root package.json for monorepo
 ```
 
+## 🎨 Design Features
+
+### Color Scheme
+- **Primary Theme**: Blue-purple gradient (`from-blue-600 via-purple-600 to-indigo-700`)
+- **Coordinated Design**: All components use harmonious blue-purple tones
+- **Strategic Pink Accents**: Used selectively for visual interest
+- **Professional Appearance**: Clean, modern, and sophisticated
+
+### Key Components
+- **Responsive Navbar**: Blue-purple themed with gradient logo
+- **Hero Section**: Coordinated background with modern shopping imagery
+- **Product Cards**: Blue-purple "Add to Cart" buttons
+- **Category Cards**: Diverse colors (blue, pink, green, purple) for visual variety
+- **Footer**: Blue-purple gradient matching the overall theme
+
 ## 🛠️ Technologies Used
 
 ### Frontend
 - React 19
 - TypeScript
 - Vite
-- Tailwind CSS
+- Tailwind CSS (with custom blue-purple color palette)
 - React Router DOM
 - Lucide React (icons)
+- React Icons
 
 ### Backend
 - Node.js
@@ -35,7 +51,7 @@ flipit/
 - bcryptjs for password hashing
 - CORS, Helmet for security
 
-## 🚀 Deployment on Vercel
+## 🚀 Vercel Deployment Guide
 
 ### Prerequisites
 1. GitHub account
@@ -52,21 +68,32 @@ flipit/
    ```
 
 2. **Deploy on Vercel**
-   - Go to [vercel.com](https://vercel.com)
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "New Project"
    - Import your GitHub repository
+   - **Important**: Select the root directory (not frontend or backend)
    - Vercel will automatically detect the configuration from `vercel.json`
+   - Click "Deploy"
 
 3. **Environment Variables**
-   Set these in Vercel dashboard:
+   In Vercel dashboard → Settings → Environment Variables, add:
    ```
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret_key
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/flipit
+   JWT_SECRET=your-super-secret-jwt-key-32-characters-long
    NODE_ENV=production
+   FRONTEND_URL=https://your-domain.vercel.app
    ```
 
-4. **Domain Configuration**
-   - Frontend will be served from the root domain
-   - Backend API will be available at `/api/*` routes
+4. **Automatic Configuration**
+   - ✅ Frontend builds automatically from `/frontend` directory
+   - ✅ Backend API serves from `/api/*` routes
+   - ✅ Static files served from root domain
+   - ✅ All routes properly configured in `vercel.json`
+
+5. **Verification**
+   - Frontend: `https://your-domain.vercel.app`
+   - Backend API: `https://your-domain.vercel.app/api/health`
+   - Test the full application functionality
 
 ## 🔧 Local Development
 

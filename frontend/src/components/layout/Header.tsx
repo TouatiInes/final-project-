@@ -36,25 +36,25 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-black">FlipIt</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">FlipIt</h1>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-black hover:text-gray-600 transition-colors">
+            <Link to="/" className="font-medium text-blue-600 hover:text-purple-600 transition-colors">
               Home
             </Link>
-            <Link to="/products" className="text-black hover:text-gray-600 transition-colors">
+            <Link to="/products" className="font-medium text-blue-600 hover:text-purple-600 transition-colors">
               Products
             </Link>
-            <Link to="/categories" className="text-black hover:text-gray-600 transition-colors">
+            <Link to="/categories" className="font-medium text-blue-600 hover:text-purple-600 transition-colors">
               Categories
             </Link>
-            <Link to="/about" className="text-black hover:text-gray-600 transition-colors">
+            <Link to="/about" className="font-medium text-blue-600 hover:text-purple-600 transition-colors">
               About
             </Link>
             {isAdmin && (
-              <Link to="/admin" className="text-blue-600 hover:text-blue-800 transition-colors font-medium">
+              <Link to="/admin" className="text-blue-600 hover:text-purple-600 transition-colors font-medium">
                 <Settings className="h-4 w-4 inline mr-1" />
                 Admin
               </Link>
@@ -69,9 +69,9 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-2.5 h-5 w-5 text-blue-400" />
             </div>
           </form>
 
@@ -79,9 +79,9 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
           <div className="flex items-center space-x-4">
             {/* Cart */}
             <Link to="/cart" className="relative">
-              <ShoppingCart className="h-6 w-6 text-black hover:text-gray-600 transition-colors" />
+              <ShoppingCart className="h-6 w-6 text-blue-600 hover:text-purple-600 transition-colors" />
               {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}
@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
               <div className="relative">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                  className="flex items-center space-x-2 text-blue-600 hover:text-purple-600 transition-colors"
                 >
                   <User className="h-6 w-6" />
                   <span className="hidden md:block">{user?.name}</span>
@@ -132,13 +132,13 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
               <div className="hidden md:flex items-center space-x-2">
                 <Link
                   to="/login"
-                  className="text-black hover:text-gray-600 transition-colors px-3 py-2"
+                  className="text-blue-600 hover:text-purple-600 transition-colors px-3 py-2 font-medium"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium shadow-md hover:shadow-lg"
                 >
                   Sign Up
                 </Link>
@@ -148,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
             {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md text-black hover:text-gray-600 transition-colors"
+              className="md:hidden p-2 rounded-md text-blue-600 hover:text-purple-600 transition-colors"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -167,37 +167,37 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
                     placeholder="Search products..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
-                  <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                  <Search className="absolute left-3 top-2.5 h-5 w-5 text-blue-400" />
                 </div>
               </form>
 
               {/* Mobile Navigation Links */}
               <Link
                 to="/"
-                className="block px-3 py-2 text-black hover:text-gray-600 transition-colors"
+                className="block px-3 py-2 font-medium text-blue-600 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 to="/products"
-                className="block px-3 py-2 text-black hover:text-gray-600 transition-colors"
+                className="block px-3 py-2 font-medium text-blue-600 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Products
               </Link>
               <Link
                 to="/categories"
-                className="block px-3 py-2 text-black hover:text-gray-600 transition-colors"
+                className="block px-3 py-2 font-medium text-blue-600 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Categories
               </Link>
               <Link
                 to="/about"
-                className="block px-3 py-2 text-black hover:text-gray-600 transition-colors"
+                className="block px-3 py-2 font-medium text-blue-600 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About
@@ -239,14 +239,14 @@ const Header: React.FC<HeaderProps> = ({ onSearch, cartItemsCount }) => {
                 <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
                   <Link
                     to="/login"
-                    className="block px-3 py-2 text-black hover:text-gray-600 transition-colors"
+                    className="block px-3 py-2 text-blue-600 hover:text-purple-600 transition-colors font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign In
                   </Link>
                   <Link
                     to="/register"
-                    className="block mx-3 py-2 px-4 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-center"
+                    className="block mx-3 py-2 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-center font-medium shadow-md"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign Up

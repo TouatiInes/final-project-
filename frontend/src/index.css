@@ -10,27 +10,32 @@
 
 @layer components {
   .btn-primary {
-    background-color: black;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
   }
 
   .btn-primary:hover {
-    background-color: #374151;
+    background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4);
   }
 
   .btn-secondary {
     background-color: white;
-    color: black;
-    border: 1px solid black;
+    color: #2563eb;
+    border: 2px solid #2563eb;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
   }
 
   .btn-secondary:hover {
-    background-color: #f3f4f6;
+    background-color: #eff6ff;
+    border-color: #1d4ed8;
+    color: #1d4ed8;
   }
 }
