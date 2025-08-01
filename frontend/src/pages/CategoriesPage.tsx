@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShoppingBag, Smartphone, Home, Dumbbell, Book, Package, ShoppingCart } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Smartphone, Home, Dumbbell, Book, Package } from 'lucide-react';
 import { categories, products } from '../data/products';
 
 const CategoriesPage: React.FC = () => {
